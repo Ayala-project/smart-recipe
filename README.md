@@ -1,4 +1,52 @@
-# Project
+# 🎂 Smart Recipe — Cake Image to Recipe Matcher
+
+**Smart Recipe** is an AI-powered web application that recommends a matching cake recipe based on a photo uploaded by the user. The system analyzes the visible features of the cake — such as layers, frosting, fruits, chocolate, and other toppings — and matches them against an existing recipe database.
+
+> **Note:** The system identifies only *visually visible* ingredients. Hidden components (e.g., fillings not visible from the outside) are not detected.
+
+---
+
+## 🚀 How It Works
+
+1. The user uploads a photo of a cake.
+2. The system identifies the visible ingredients and decorations in the image using computer vision.
+3. The system cross-references the extracted features with a recipe dataset and suggests the most suitable recipe.
+
+---
+
+## 🧠 AI & Machine Learning
+
+The system uses **TensorFlow** for image analysis. Several deep learning architectures were considered:
+
+| Model | Approach |
+|---|---|
+| **DeepLabV3** | Semantic segmentation — identifies distinct regions (cream, layers, fruits) |
+| **U-Net** | Pixel-level segmentation with skip connections for blended ingredients |
+| **Mask R-CNN** | Object detection + precise boundary masks per ingredient |
+| **Faster R-CNN** | Two-stage object detection with region proposals |
+| **YOLO** | Fast single-pass object detection |
+| **Transfer Learning** | Pre-trained models (VGG16, ResNet50, InceptionV3) fine-tuned on cake data |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Angular 19
+- **AI / ML:** Python + TensorFlow
+- **Communication:** HTTP / REST API
+- **Dataset:** Custom cake image dataset (no traditional database)
+
+---
+
+## 🔮 Future Development
+
+- 📱 Mobile app for on-the-go photo uploads
+- 💬 Natural language interface: describe a cake in words and get a recipe
+- 🧊 "What's in my fridge?" feature — get recipe suggestions from ingredient descriptions
+
+---
+
+## 🏃 Running the Project
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
 
