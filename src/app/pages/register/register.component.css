@@ -1,0 +1,264 @@
+/* Primary Colors */
+:root {
+  --primary: #013440;
+  --accent: #FFF204;
+  --error: #991F28;
+  --ok: #2E7D32;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+ 
+}
+
+.register-container {
+  background: url('../../../../public/222.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.register-content {
+  background: rgba(167, 155, 99, 0.733);
+  width: 500px;
+  min-height: 250px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+ 
+}
+
+.register-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.switch {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background: #f5f5f5;
+  border-radius: 2px 2px 0 0;
+  
+}
+
+.switch .option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+
+.switch .option.selected {
+  background: white;
+}
+
+.switch .option:not(.selected):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.switch .bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: #013440;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.form-content {
+  padding: 30px;
+  transition: all 0.3s ease;
+  direction: rtl;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 35px;
+  direction: rtl;
+
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000;
+  border: none;
+  border-bottom: 1px solid #757575;
+  outline: none;
+  background: transparent;
+  text-align:r;
+}
+
+.form-group label {
+  position: absolute;
+  top: 0;
+  right: 0; /* שינוי מ-left ל-right */
+  padding: 10px 0;
+  font-size: 16px;
+  color: #757575;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #013440;
+}
+
+.form-group .bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.form-group .bar:before,
+.form-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #013440;
+  transition: 0.3s ease all;
+}
+
+.form-group .bar:before {
+  left: 50%;
+}
+
+.form-group .bar:after {
+  right: 50%;
+}
+
+.form-group input:focus ~ .bar:before,
+.form-group input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.submit-btn {
+  position: relative;
+  display: block;
+  margin: 40px auto 20px;
+  padding: 0;
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  background: #FFF204;
+  color: #013440;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  
+}
+
+.submit-btn i {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+  line-height: 70px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.20), 0 6px 12px rgba(0,0,0,0.24);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn.sending {
+  pointer-events: none;
+  animation: submitAnimation 1s forwards, moveButton 1s ease-in-out;
+}
+
+.submit-btn.sending i {
+  animation: iconAnimation 0.5s forwards;
+}
+
+@keyframes submitAnimation {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-150px, 0) scale(0.8);
+    background: #FFF204;
+  }
+  100% {
+    transform: translate(-200px, 0) scale(1.2);
+    background: #2E7D32;
+  }
+}
+
+@keyframes iconAnimation {
+  0% {
+    transform: scale(1) rotate(0);
+  }
+  50% {
+    transform: scale(0.5) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes moveButton {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(20px); }
+  75% { transform: translateX(-20px); }
+  100% { 
+    transform: translateX(0);
+    background-color: #4CAF50;
+  }
+}
+
+.error-message {
+  color: #991F28;
+  font-size: 12px;
+  margin-top: 5px;
+  position: absolute;
+  bottom: -20px;
+  right: 0; /* שינוי מ-left ל-right */
+}
+
+p {
+  text-align: center;
+  position: absolute;
+  bottom: 120px;
+  width: 100%;
+  color: #666;
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    margin: 20px;
+    padding: 20px;
+  }
+}

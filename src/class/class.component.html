@@ -1,0 +1,90 @@
+<p>class works!</p>
+<div class="a">
+    <h2>טבלת החוגים:</h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>מספר קורס</th>
+                <th>שם קורס</th>
+                <th>מספר קורס</th>
+                <th>מחיר</th>
+                <th>חדש?</th>
+               
+                <th>תמונה</th>
+                <th>רישום לקורס</th>
+              
+                <th>מספר מקומות שנותרו</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for(c of arr; track c.id)
+            {
+            <tr>
+                <td>{{c.id}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.teacher}}</td>
+                <td>{{c.price}}</td>
+                <td>{{c.new_class}}</td>
+                <td><img src="{{c.img}}" style="width: 10%;"></td>
+                <td>{{c.place_class}}</td>
+                <td><button [disabled]="c.place_class<=0" (click)="rishum(c)">הרשמה </button></td>
+                <td><button  (click)="aricha(c)">עריכה  </button></td>
+
+            </tr>
+            }
+        </tbody>
+
+    </table>
+
+
+</div>
+<form class="was-validated" (ngSubmit)="add()">
+    <div class="mb-3 mt-3">
+      <label for="uname" class="form-label">id</label>
+      <input type="number" class="form-control" id="uname" [disabled]="!ae"
+     [(ngModel)]="chug.id" placeholder="Enter id"
+        name="uname" minlength="5" maxlength="8" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="mb-3">
+      <label for="pwd" class="form-label">name:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter name" [(ngModel)]="chug.name" name="pswd"
+        required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="mb-3">
+      <label for="Year" class="form-label">teacher:</label>
+      <input type="text" class="form-control" id="Year" placeholder="Enter teacher" [(ngModel)]="chug.teacher" name="Year"
+        required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="uname" class="form-label">price</label>
+        <input type="number" class="form-control" id="uname" 
+       [(ngModel)]="chug.price" placeholder="Enter price"
+          name="uname" minlength="5" maxlength="8" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="uname" class="form-label">new_class</label>
+        <input type="text" class="form-control" id="uname" 
+       [(ngModel)]="chug.new_class" placeholder="Enter true or false"
+          name="uname" minlength="5" maxlength="8" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="uname" class="form-label">place_class</label>
+        <input type="number" class="form-control" id="uname" 
+       [(ngModel)]="chug.place_class" placeholder="Enter place_class"
+          name="uname" minlength="5" maxlength="8" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>

@@ -1,0 +1,74 @@
+<div class="recipe-book-container">
+    <div class="header-section">
+      <button class="bn29 back-button" (click)="navigateToPostLogin()">חזור לתפריט הראשי</button>
+      <h2>ספר המתכונים שלי</h2>
+    </div>
+    
+    <!-- רשימת המתכונים המקוצרת -->
+    <ul class="recipe-list">
+      <li *ngFor="let recipe of recipes" (click)="toggleRecipe(recipe)" class="recipe-card">
+        <img *ngIf="recipe.image_url" 
+             [src]="'http://localhost:5000/'+recipe.image_url" 
+             [alt]="recipe.name"
+             class="recipe-preview-image">
+        <div class="recipe-preview">
+          <div class="recipe-title">{{ recipe.name }}</div>
+          <p class="preview-text">לחץ לפרטים נוספים...</p>
+        </div>
+      </li>
+    </ul>
+
+    <!-- תצוגה מורחבת של מתכון -->
+    <div *ngIf="expandedRecipe" class="expanded-recipe-overlay" (click)="closeExpandedRecipe()">
+      <div class="expanded-recipe-content" (click)="$event.stopPropagation()">
+        <button class="close-button" (click)="closeExpandedRecipe()">✕</button>
+        
+        <!-- תצוגת מתכון -->
+        <ng-container *ngIf="!editingRecipe || editingRecipe?.name !== expandedRecipe.name">
+          <div class="recipe-title">{{ expandedRecipe.name }}</div>
+          <div class="recipe-content">
+          
+            <
+            <!-- <p>שם הקובץ של התמונה: {{ expandedRecipe.image_url }}</p> -->
+
+            <img 
+              [src]="'http://localhost:5000/'+expandedRecipe.image_url" 
+              [alt]="expandedRecipe.image_url" />
+
+       
+                      <!-- לקחת את שם המשתמש מהLOCALSTORAGE עם _ שם התמונה  -->
+
+            <p><strong>מרכיבים:</strong></p>
+            <ul class="ingredients-list">
+              <li *ngFor="let product of expandedRecipe.products">{{ product }}</li>
+            </ul>
+            <p><strong>הוראות הכנה:</strong></p>
+            <p class="instructions">{{ expandedRecipe.instructions }}</p>
+            <div class="button-group">
+              <button class="bn29" (click)="startEdit(expandedRecipe, $event)">ערוך מתכון</button>
+              <button class="bn29 delete" (click)="deleteRecipe(expandedRecipe, $event)">מחק מתכון</button>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- טופס עריכה -->
+        <ng-container *ngIf="editingRecipe?.name === expandedRecipe.name">
+          <div class="recipe-title">{{ expandedRecipe.name }}</div>
+          <div class="edit-form">
+            <div class="form-group">
+              <label><strong>מרכיבים:</strong></label>
+              <textarea [(ngModel)]="tempProducts" class="form-control" rows="3" placeholder="הכנס מרכיבים מופרדים בפסיקים"></textarea>
+            </div>
+            <div class="form-group">
+              <label><strong>הוראות הכנה:</strong></label>
+              <textarea [(ngModel)]="tempInstructions" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="button-group">
+              <button class="bn29" (click)="saveRecipe()">שמור שינויים</button>
+              <button class="bn29 cancel" (click)="cancelEdit()">בטל</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,48 @@
+<div class="questions-container" [ngClass]="{'question-background': question, 'recipes-background': recipes.length > 0}">
+  <!-- תצוגת התמונה המקומית -->
+  <div class="local-image-container" *ngIf="imageUrl">
+    <img [src]="imageUrl" 
+         alt="תמונת המתכון" 
+         class="local-uploaded-image"
+         (error)="onImageError($event)">
+  </div>
+
+
+  <!-- אם יש שאלה -->
+  <div *ngIf="question" class="question-section">
+    <!-- <h2>שאלה:</h2> -->
+                      <p>{{ question }}</p>
+    <div class="answer-buttons">
+      <button class="bn29" (click)="submitAnswer('yes')">כן</button>
+      <button class="bn29" (click)="submitAnswer('no')">לא</button>
+      <button class="bn29" (click)="submitAnswer('לא משנה')">לא משנה</button>
+    </div>
+  </div>
+
+  <!-- אם יש מתכונים -->
+  <div *ngIf="recipes.length > 0" class="recipes-section">
+    <h1>מתכונים:</h1>
+    <ul>
+      <li *ngFor="let recipe of recipes">
+        <h2>{{ recipe.name }}</h2>
+        <div class="recipe-image" *ngIf="recipe.image">
+          <img [src]="recipe.image" 
+               alt="תמונת המתכון"
+               class="uploaded-image"
+               (error)="onImageError($event)">
+        </div>
+        <br>
+        <h5>הוראות הכנה:</h5> {{recipe.instructions}}
+        <h5>מרכיבים:</h5>
+        <ul>
+          <li *ngFor="let ingredient of recipe.products">
+            <label>
+              <input type="checkbox" [value]="ingredient"> {{ingredient}}
+            </label>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <button class="bn29" (click)="goToRecipeBook()">עבור לספר המתכונים</button>
+  </div>
+</div>

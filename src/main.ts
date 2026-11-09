@@ -1,6 +1,9 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http'; // ייבוא HttpClient
 import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes), provideHttpClient()] // הוספת HttpClient
+}).catch((err) => console.error(err));

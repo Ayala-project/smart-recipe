@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    padding-top:0px; /* תואם את הגובה החדש של ה-header */
+}
+
+.main-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    height: 40px;
+    margin-right: auto; /* יישר לימין ב-RTL, לשמאל ב-LTR */
+}

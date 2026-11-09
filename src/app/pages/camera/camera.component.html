@@ -1,0 +1,16 @@
+<div class="camera-container">
+  <video #video [class.active]="isCameraActive"></video>
+  <canvas #canvas hidden></canvas>
+
+  <button class="bn29" (click)="startCamera()">הפעל מצלמה</button>
+  <button class="bn29" (click)="captureImage()">צלם תמונה</button>
+
+  <label class="file-upload bn29">
+    בחר קובץ תמונה
+    <input type="file" (change)="onFileChange($event)" accept="image/*" />
+  </label>
+
+  <button class="bn29" (click)="uploadImage()">שלח תמונה</button>
+
+  <img *ngIf="capturedImage" [src]="capturedImage" alt="Preview" class="preview-image" />
+</div>
